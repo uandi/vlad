@@ -79,9 +79,9 @@ namespace :vlad do
       commands << "umask #{umask}" if umask
       unless skip_scm
         commands << "cd #{scm_path}"
-        commands << "#{source.checkout revision, scm_path}"
+        commands << "#{scm_source.checkout revision, scm_path}"
       end
-      commands << "#{source.export revision, release_path}"
+      commands << "#{scm_source.export revision, release_path}"
 
       unless shared_paths.empty?
         commands << "rm -rf #{shared_paths.values.map { |p| File.join(latest_release, p) }.join(' ')}"
